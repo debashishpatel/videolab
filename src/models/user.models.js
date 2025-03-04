@@ -1,4 +1,6 @@
 import mongoose,{ Schema } from "mongoose";
+import jwt from  "jsonwebtoken"
+import bcrypt from "bcrypt"
 
 const userSchema = new Schema({
     username: {
@@ -47,6 +49,11 @@ const userSchema = new Schema({
 {
     timestamps: true //created at and updated at fields
 })
+
+//prehooks and post hooks
+//bcrypt
+
+
 
 export const User = mongoose.model("User", userSchema)
 
@@ -117,7 +124,8 @@ userSchema.methods.isPasswordCorrect = async function(password){
 }
 
 userSchema.methods.generateAccessToken = function(){
-    return jwt.sign(
+//short lived token    
+return jwt.sign(
         {
             _id: this._id,
             email: this.email,

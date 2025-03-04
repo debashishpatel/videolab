@@ -2,46 +2,51 @@ import mongoose,{ Schema } from "mongoose";
 import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
 
 const videosSchema = new Schema({
-    username: {
+    videoFile:{
         type: String,
         required: true,
-        unique: true,
-        lowercase: true,
-        trim: true, 
-        index: true
+        trim: true,
+        unique: true
     },
-    email: {
+    thumbnail:{
         type: String,
         required: true,
-        unique: true,
-        lowecase: true,
-        trim: true, 
+        trim: true,
+        unique: true
     },
-    fullName: {
+    owner:{
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    },
+    title:{
         type: String,
         required: true,
-        trim: true, 
-        index: true
+        trim: true,
+        unique: true
     },
-    avatar: {
-        type: String, // cloudinary url
-        required: true,
-    },
-    coverImage: {
-        type: String, // cloudinary url
-    },
-    watchHistory: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: "Video"
-        }
-    ],
-    password: {
+    description:{
         type: String,
-        required: [true, 'Password is required']
+        required: true,
+        trim: true,
+        unique: true
     },
-    refreshToken: {
-        type: String
+    duration:{
+        type: String,
+        required: true,
+        trim: true,
+        unique: true
+    },
+    views:{
+        type: String,
+        required: true,
+        trim: true,
+        unique: true
+    },
+    ispublished:{
+        type: Boolean,
+        required: true,
+        trim: true,
+        unique: true
     }
 
 },
